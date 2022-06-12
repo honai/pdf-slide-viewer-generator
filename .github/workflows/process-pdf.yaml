@@ -4,6 +4,7 @@ on:
       - main
     paths:
       - 'assets/pdf/*.pdf'
+  workflow_dispatch:
 
 jobs:
   process-pdf:

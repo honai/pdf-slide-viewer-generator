@@ -1,13 +1,12 @@
 require "json"
+require "fileutils"
 
 require "pdf-reader"
 
 def generate_pdf_images(pdf_file, output_prefix)
   command = "pdftoppm -jpeg -scale-to 1280 #{pdf_file.to_s} #{output_prefix}"
   puts command
-  if !system(command)
-    raise RuntimeError
-  end
+  raise RuntimeError if !system(command)
 end
 
 def extract_links(page, reader)
@@ -34,7 +33,10 @@ def rectangle_to_css_position(rect, width, height)
     left: rect[0] / width,
     bottom: rect[1] / height,
     right: (width - rect[2]) / width
-  }.map { |k, v| [k, "#{(v * 100).round(2)}%"] }.to_h.map{|k,v| "#{k}:#{v};"}.join("")
+  }.map { |k, v| [k, "#{(v * 100).round(2)}%"] }
+    .to_h
+    .map { |k, v| "#{k}:#{v};" }
+    .join("")
 end
 
 def parse_pdf(pdf_file, image_prefix, image_ext)
@@ -42,18 +44,24 @@ def parse_pdf(pdf_file, image_prefix, image_ext)
   # pdftoppm generate images with page number (0-padding, 1-indexed)
   # so we have to pad index with 0
   idx_pad_len = (reader.pages.length + 1).to_s.length
-  pages = reader.pages.map.with_index do |page, idx|
-    idx_str = (idx + 1).to_s.rjust(idx_pad_len, "0")
-    {
-      text: page.text.gsub(/\s+/, " "),
-      width: page.width,
-      height: page.height,
-      image: "#{image_prefix}#{idx_str}#{image_ext}",
-      links: extract_links(page, reader).map{ |link| { url: link[:url], position_str: rectangle_to_css_position(
-        link[:rect], page.width, page.height
-      ) } }
-    }
-  end
+  pages =
+    reader.pages.map.with_index do |page, idx|
+      idx_str = (idx + 1).to_s.rjust(idx_pad_len, "0")
+      {
+        text: page.text.gsub(/\s+/, " "),
+        width: page.width,
+        height: page.height,
+        image: "#{image_prefix}#{idx_str}#{image_ext}",
+        links:
+          extract_links(page, reader).map do |link|
+            {
+              url: link[:url],
+              position_str:
+                rectangle_to_css_position(link[:rect], page.width, page.height)
+            }
+          end
+      }
+    end
   title = reader.info[:title] || pages[0][:text]
   { title: title, pages: pages }
 end
@@ -64,8 +72,24 @@ def main
   output_dir = dir.join("_slides")
   slide_image_dir = dir.join("assets/slide-images")
 
-  pdf_dir.glob("*.pdf").each do |pdf_file|
-    # pdf file name w/o extension
+  pdf_files = pdf_dir.glob("*.pdf")
+  # remove page from deleted PDFs
+  slide_basenames = pdf_files.map { |p| p.basename(".pdf").to_s }
+  output_dir
+    .glob("*.md")
+    .each do |page_file|
+      if !slide_basenames.include?(page_file.basename(".md").to_s)
+        page_file.delete()
+      end
+    end
+  # remove images from deleted PDFs
+  slide_image_dir
+    .children
+    .filter { |d| d.basename.to_s != ".gitkeep" }
+    .each { |d| d.rmtree() if !slide_basenames.include?(d.basename().to_s) }
+
+  # parse PDFs
+  pdf_files.each do |pdf_file|
     pdf_name = pdf_file.basename(".pdf").to_s
 
     slide_image_target_dir = slide_image_dir.join(pdf_name)
@@ -82,4 +106,4 @@ def main
   end
 end
 
-main()
+main
