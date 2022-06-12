@@ -1,0 +1,14 @@
+.carousel-control {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 5px;
+  > .slider {
+  }
+  > .indicator {
+  }
+  > .next,
+  .prev {
+  }
+}

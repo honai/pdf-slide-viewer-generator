@@ -1,0 +1,56 @@
+---
+layout: default
+scripts:
+  - src: carousel-control.js
+---
+<nav>
+  <a href="{{ '/' | relative_url }}">スライド一覧</a>
+</nav>
+<h1>{{ page.title }}</h1>
+{% assign carousel_elm_id = "carousel-" | append: page.id | escape %}
+<div class="slide-viewer">
+  <div class="carousel" id="{{ carousel_elm_id }}">
+    {% for slide in page.pages %}
+      <div class="slide-with-links">
+        <img
+          src="{{ '/assets/slide-images/' | append: slide.image | relative_url }}"
+          alt="{{ slide.text | escape }}"
+          width="{{ slide.width }}"
+          height="{{ slide.height }}"
+          {% comment %} tabindex="0" {% endcomment %}
+          loading="lazy"
+        />
+          {% for link in slide.links %}
+            <a
+              href="{{ link.url }}"
+              title="{{ link.url }}"
+              style="{{ link.position_str }}"
+              target="_blank"
+              rel="noopener"
+            ></a>
+          {% endfor %}
+      </div>
+    {% endfor %}
+  </div>
+  {% assign page_count = page.pages | size %}
+  <div
+    class="carousel-control"
+    data-target="{{ carousel_elm_id }}"
+    data-page-count="{{ page_count }}"
+  >
+    <input
+      class="slider"
+      type="range"
+      name="page"
+      min="1"
+      max="{{ page_count }}"
+      step="1"
+      value="1"
+    />
+    <span class="indicator"
+      ><span data-page-number>1</span>/{{ page_count }}</span
+    >
+    <button class="prev" type="button" name="prev" title="前のスライド">←</button>
+    <button class="next" type="button" name="next" title="次のスライド">→</button>
+  </div>
+</div>

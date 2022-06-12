@@ -1,0 +1,31 @@
+.slide-viewer {
+  --slide-width: 80%;
+  --slide-margin: calc(50% - var(--slide-width) / 2);
+
+  > .carousel {
+    display: flex;
+    flex-flow: row nowrap;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    gap: 10px;
+    background-color: #000;
+    border: 1px solid gray;
+  }
+
+  > .carousel > .slide-with-links {
+    flex: 0 0 var(--slide-width);
+    scroll-snap-align: center;
+    &:first-child {
+      margin-left: var(--slide-margin);
+    }
+    &:last-child {
+      margin-right: var(--slide-margin);
+    }
+  }
+
+  > .carousel > .slide > img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+}

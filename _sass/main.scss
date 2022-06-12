@@ -1,0 +1,18 @@
+$backgroundColor: #ffffff;
+$bodyColor: #000000;
+$bodyFont: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
+  sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+
+body {
+  background: $backgroundColor;
+  color: $bodyColor;
+  font-family: $bodyFont;
+  width: \min(100% - 20px, 960px);
+  margin: 0 auto;
+}
+
+@import "components/slide-viewer";
+@import "components/slide-list";
+@import "components/slide-card";
+@import "components/carousel-control";
+@import "components/slide-with-links";

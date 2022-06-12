@@ -1,0 +1,16 @@
+# BaseURLl: ""
+title: PDF Slide Viewer Generator
+collections:
+  slides:
+    output: true
+    permalink: /:name/
+defaults:
+  - scope:
+      path: ""
+      type: slides
+    values:
+      layout: slide
+exclude:
+  - README.md
+  - "*.rb"
+  - Gemfile*

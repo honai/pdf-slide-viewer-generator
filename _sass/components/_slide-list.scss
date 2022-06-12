@@ -1,0 +1,5 @@
+.slide-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 320px));
+  gap: 10px;
+}

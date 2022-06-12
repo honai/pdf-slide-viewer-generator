@@ -1,0 +1,11 @@
+.slide-with-links {
+  position: relative;
+  > img {
+    width: 100%;
+    height: auto;
+  }
+  > a {
+    position: absolute;
+    border: 2px dashed rgba(0, 0, 255, 0.5);
+  }
+}

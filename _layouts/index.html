@@ -1,0 +1,21 @@
+---
+layout: default
+---
+<h1>スライド一覧</h1>
+<div class="slide-list">
+  {% for slide in site.slides %}
+    <article class="slide-card">
+      <a href="{{ slide.url | relative_url }}" class="thumb">
+        <img
+          src="{{ '/assets/slide-images/' | relative_url | append: slide.pages[0].image }}"
+          alt="{{ slide.title | escape }}"
+          width="{{ slide.pages[0].width }}"
+          height="{{ slide.pages[0].height }}"
+        >
+      </a>
+      <h2 class="title">
+        <a href="{{ slide.url | relative_url }}">{{ slide.title }}</a>
+      </h2>
+    </article>
+  {% endfor %}
+</div>

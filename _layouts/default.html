@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: 'ja' }}">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title>{{ page.title }} - {{ site.title }}</title>
+    <link rel="stylesheet" href="{{ '/assets/styles/main.css' | relative_url }}">
+    {% for script in layout.scripts %}
+      <script src="{{ '/assets/scripts/' | relative_url | append: script.src }}" defer></script>
+    {% endfor %}
+  </head>
+  <body>
+    {{ content }}
+  </body>
+</html>
