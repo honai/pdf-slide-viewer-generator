@@ -22,6 +22,7 @@ class CarouselControl {
     this._nextButton.addEventListener("click", this._next);
     this._prevButton.addEventListener("click", this._prev);
     this._controlElm.addEventListener("keydown", this._handleKeyDown);
+    window.addEventListener("resize", this._handleResize)
   }
 
   /**
