@@ -1,6 +1,6 @@
 ---
 {
-  "title": " Self hosted PDF slide",
+  "title": " Self hosted PDF slide viewer",
   "pages": [
     {
       "text": " Self hosted PDF slide viewer This is a demo slide",
