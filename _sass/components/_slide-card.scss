@@ -1,11 +1,13 @@
 .slide-card {
   --radius: 5px;
+  --border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: var(--radius);
-  border: 1px solid rgba(0, 0, 0, 0.3);
+  border: var(--border);
   display: flex;
   flex-flow: column nowrap;
   > .thumb > img {
     border-radius: var(--radius) var(--radius) 0 0;
+    border-bottom: var(--border);
     width: 100%;
     height: auto;
   }
