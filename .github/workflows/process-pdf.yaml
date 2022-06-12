@@ -3,7 +3,7 @@ on:
     branches:
       - main
     paths:
-      - assets/pdf
+      - 'assets/pdf/*.pdf'
 
 jobs:
   process-pdf:
