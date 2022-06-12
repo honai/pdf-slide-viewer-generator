@@ -1,5 +1,5 @@
 # pdf-slide-viewer-generator
-PDFのスライドを簡単に共有できるテンプレートレポジトリ
+PDFスライド公開サイトを簡単に作成できるテンプレートレポジトリ
 
 ## 使い方
 1. Fork または “Use this template”
