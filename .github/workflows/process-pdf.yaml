@@ -1,0 +1,41 @@
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - assets/pdf
+
+jobs:
+  process-pdf:
+    runs-on: ubuntu-20.04
+    permissions:
+      contents: write
+    steps:
+      - run: sudo apt-get install poppler-utils -y
+
+      - uses: actions/checkout@v3
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '2.7'
+          bundler-cache: true
+
+      - name: Build
+        run: bundle exec ruby process-pdf.rb
+
+      - name: Diff
+        id: diff
+        run: |
+          git add -N _slides assets/slide-images
+          git diff --name-only --exit-code
+        continue-on-error: true
+
+      - name: Commit & Push
+        # Be careful not to create an infinite loop of CI
+        if: steps.diff.outcome == 'failure'
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email github-actions[bot]@users.noreply.github.com
+          git add _slides assets/slide-images
+          git commit -m '[skip actions] generate slide images and data'
+          git push
