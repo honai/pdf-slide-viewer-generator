@@ -19,4 +19,11 @@ title: スライド一覧
       </h2>
     </article>
   {% endfor %}
+  <!-- スライドが2つ以下のときに幅が大きくなるのを防ぐ -->
+  {% if site.slides.size < 3 %}
+    {% assign s = 3 | minus: site.slides.size %}
+    {% for i in (1..s) %}
+      <div></div>
+    {% endfor %}
+  {% endif %}
 </div>
