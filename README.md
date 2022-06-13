@@ -12,7 +12,7 @@ https://github.honai.me/pdf-slide-viewer-generator/
 
 <!-- ![スライド一覧](https://user-images.githubusercontent.com/29170100/173290106-a83cf5fb-e114-47fc-a530-217310896de7.png) -->
 
-[![スライドごとのページ](https://user-images.githubusercontent.com/29170100/173289977-18a7e661-e024-412a-ae12-f92918eb1022.png)]([https://github.honai.me/pdf-slide-viewer-generator/](https://github.honai.me/pdf-slide-viewer-generator/example/))
+![スライドごとのページ](https://user-images.githubusercontent.com/29170100/173289977-18a7e661-e024-412a-ae12-f92918eb1022.png)
 
 ## 技術構成
 Jekyll + GitHub Pages + GitHub Actions
