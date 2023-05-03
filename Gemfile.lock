@@ -221,7 +221,7 @@ GEM
       sawyer (~> 0.9)
     pathutil (0.16.2)
       forwardable-extended (~> 2.6)
-    pdf-reader (2.10.0)
+    pdf-reader (2.11.0)
       Ascii85 (~> 1.0)
       afm (~> 0.2.1)
       hashery (~> 2.0)
@@ -268,7 +268,7 @@ PLATFORMS
 DEPENDENCIES
   github-pages (~> 226)
   http_parser.rb (~> 0.6.0)
-  pdf-reader (~> 2.10.0)
+  pdf-reader (~> 2.11.0)
   tzinfo (~> 1.2)
   tzinfo-data
   wdm (~> 0.1.1)
