@@ -22,4 +22,4 @@ gem "wdm", "~> 0.1.1", :platforms => [:mingw, :x64_mingw, :mswin]
 gem "http_parser.rb", "~> 0.6.0", :platforms => [:jruby]
 
 # PDF parser
-gem "pdf-reader", "~> 2.10.0"
+gem "pdf-reader", "~> 2.11.0"
