@@ -24,9 +24,6 @@ jobs:
       - name: Build
         run: bundle exec ruby process-pdf.rb
 
-      - name: debug
-        run: git status
-
       - name: Diff
         id: diff
         run: |
