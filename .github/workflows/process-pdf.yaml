@@ -14,7 +14,7 @@ jobs:
     steps:
       - run: sudo apt-get install poppler-utils -y
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v6
 
       - uses: ruby/setup-ruby@v1
         with:
