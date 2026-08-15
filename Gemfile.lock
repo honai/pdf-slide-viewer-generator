@@ -222,11 +222,10 @@ GEM
       sawyer (~> 0.9)
     pathutil (0.16.2)
       forwardable-extended (~> 2.6)
-    pdf-reader (2.15.1)
+    pdf-reader (2.16.0)
       Ascii85 (>= 1.0, < 3.0, != 2.0.0)
       afm (>= 0.2.1, < 2)
       hashery (~> 2.0)
-      ruby-rc4
       ttfunk
     public_suffix (4.0.7)
     racc (1.6.2)
@@ -235,7 +234,6 @@ GEM
       ffi (~> 1.0)
     rexml (3.2.5)
     rouge (3.26.0)
-    ruby-rc4 (0.1.5)
     ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
     safe_yaml (1.0.5)
@@ -270,7 +268,7 @@ PLATFORMS
 DEPENDENCIES
   github-pages (~> 228)
   http_parser.rb (~> 0.6.0)
-  pdf-reader (~> 2.15.1)
+  pdf-reader (~> 2.16.0)
   tzinfo (~> 1.2)
   tzinfo-data
   wdm (~> 0.1.1)
